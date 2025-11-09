@@ -2,20 +2,59 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:13
+    image: postgres:15
     environment:
-      POSTGRES_DB: appdb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: notesapp
+      POSTGRES_USER: notesuser
+      POSTGRES_PASSWORD: notespass
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   redis:
-    image: redis:alpine
+    image: redis:7-alpine
     ports:
       - "6379:6379"
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  backend:
+    build: ./backend
+    environment:
+      - DATABASE_URL=postgresql://notesuser:notespass@postgres/notesapp
+      - REDIS_URL=redis://redis:6379
+      - SECRET_KEY=your-secret-key-here
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - REFRESH_TOKEN_EXPIRE_DAYS=7
+      - SMTP_SERVER=mailhog
+      - SMTP_PORT=1025
+      - EMAIL_FROM=admin@notesapp.com
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - mailhog
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
 
 volumes:
   postgres_data:

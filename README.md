@@ -1,177 +1,383 @@
-# Notes SaaS Application
+<div align="center">
+  <img src="./freepik__-saas-notesapp-adminuser-it-favicon-tech-vercel-no__60669.png" alt="Notes App Logo" width="120" height="120">
+  
+  # 📝 Notes SaaS Application
+  
+  ### A Modern, Production-Ready Full-Stack Notes Management Platform
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-009688.svg?style=flat&logo=FastAPI&logoColor=white)](https://fastapi.tiangolo.com)
+  [![React](https://img.shields.io/badge/React-18-61DAFB.svg?style=flat&logo=React&logoColor=white)](https://reactjs.org)
+  [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?style=flat&logo=Docker&logoColor=white)](https://www.docker.com)
+  
+  [Features](#-features) • [Demo](#-demo) • [Quick Start](#-quick-start) • [Tech Stack](#-tech-stack) • [Documentation](#-documentation) • [Contributing](#-contributing)
+  
+</div>
 
-A full-stack SaaS application for managing notes with user authentication, roles, and access control.
+---
 
-## Features
+## ✨ Features
 
-- **User Authentication**: Registration, login, email confirmation, password recovery
-- **Role-Based Access Control**: Admin and User roles
-- **Notes Management**: Create, read, update, delete notes with access levels (private, public, shared)
-- **Admin Panel**: Manage users and view audit logs
-- **Audit Logging**: Track user actions
-- **Responsive UI**: Built with React and Tailwind CSS
+### 🔐 Authentication & Security
+- **User Registration** with email verification
+- **JWT-based Authentication** with access & refresh tokens
+- **Token Rotation** for enhanced security
+- **Password Reset** via email
+- **Bcrypt Password Hashing**
+- **Role-Based Access Control (RBAC)** - User & Admin roles
 
-## Tech Stack
+### 📄 Notes Management
+- **Full CRUD Operations** - Create, Read, Update, Delete notes
+- **Visibility Levels**:
+  - 🔒 **Private** - Only you can see
+  - 🌍 **Public** - Everyone can see
+  - 🔗 **Unlisted** - Only with link
+- **Draft Mode** - Save work in progress
+- **Tagging System** - Organize with tags
+- **Rich Text Support** - Format your notes
+- **Search & Filter** - Find notes quickly
 
-### Backend
-- **FastAPI**: High-performance web framework
-- **SQLAlchemy**: ORM for database interactions
-- **Alembic**: Database migrations
-- **PostgreSQL**: Primary database (SQLite for development)
-- **bcrypt**: Password hashing
-- **JWT**: Token-based authentication
-- **aiosmtplib**: Email sending
+### 👨‍💼 Admin Features
+- **User Management Dashboard**
+  - View all users
+  - Change user roles
+  - Activate/Deactivate accounts
+- **Audit Logging**
+  - Track all system activities
+  - Monitor user actions
+  - View detailed logs with IP & User Agent
+- **System Statistics**
+  - User metrics
+  - Activity tracking
+  - Real-time insights
 
-### Frontend
-- **React**: UI library
-- **TypeScript**: Type-safe JavaScript
-- **Tailwind CSS**: Utility-first CSS framework
-- **Axios**: HTTP client
+### 🎨 Modern UI/UX
+- **Ultra-Modern Design** with glassmorphism effects
+- **Animated Backgrounds** - Aurora & particle effects
+- **Smooth Animations** - Framer Motion powered
+- **Dark/Light Mode** support
+- **Responsive Design** - Works on all devices
+- **Gradient Accents** - Beautiful color schemes
+- **Interactive Components** - Hover effects & micro-interactions
 
-## Setup
+## 🖼️ Demo
+
+### Screenshots
+
+<div align="center">
+  <img src="./screenshots/login page.jpg" alt="Login Page" width="45%">
+  <img src="./screenshots/register page.jpg" alt="Register Page" width="45%">
+  <img src="./screenshots/mainpage.jpg" alt="Notes List" width="45%">
+  <img src="./screenshots/admin panel.jpg" alt="Admin Panel" width="45%">
+</div>
+
+### Demo Accounts
+
+| Role  | Email | Password |
+|-------|-------|----------|
+| 👑 Admin | `admin@example.com` | `AdminPass123!` |
+| 👤 User | `user@example.com` | `UserPass123!` |
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- Node.js 14+
-- PostgreSQL (optional, SQLite for development)
 
-### Backend Setup
+- [Docker](https://www.docker.com/get-started) & Docker Compose
+- [Git](https://git-scm.com/downloads)
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
+### Installation
 
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+1. **Clone the repository**
+```bash
+git clone https://github.com/atyakshev0405-star/Notes-SaaS-Application.git
+cd Notes-SaaS-Application
+```
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. **Copy environment configuration**
+```bash
+cp .env.example .env
+```
 
-4. Set up environment variables (create `.env` file):
-   ```
-   DATABASE_URL=sqlite:///./app.db
-   SECRET_KEY=your-secret-key-here
-   SMTP_SERVER=smtp.gmail.com
-   SMTP_PORT=587
-   SMTP_USERNAME=your-email@gmail.com
-   SMTP_PASSWORD=your-app-password
-   ```
+3. **Start the application**
+```bash
+docker-compose up --build
+```
 
-5. Run database migrations:
-   ```bash
-   alembic upgrade head
-   ```
+4. **Run database migrations**
+```bash
+docker-compose exec backend alembic upgrade head
+```
 
-6. Start the backend server:
-   ```bash
-   uvicorn app.main:app --reload
-   ```
+5. **Access the application**
+- 🌐 **Frontend**: http://localhost:3000
+- 🔧 **Backend API**: http://localhost:8000
+- 📚 **API Documentation**: http://localhost:8000/docs
+- 📧 **MailHog** (Email Testing): http://localhost:8025
 
-The API will be available at `http://localhost:8000`
+That's it! The application is now running with demo accounts ready to use. 🎉
 
-### Frontend Setup
+## 🛠️ Tech Stack
 
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
+### Backend
+- **[FastAPI](https://fastapi.tiangolo.com/)** - Modern Python web framework
+- **[SQLAlchemy](https://www.sqlalchemy.org/)** - SQL toolkit and ORM
+- **[PostgreSQL](https://www.postgresql.org/)** - Relational database
+- **[Redis](https://redis.io/)** - In-memory data store for tokens
+- **[Alembic](https://alembic.sqlalchemy.org/)** - Database migrations
+- **[Pydantic](https://docs.pydantic.dev/)** - Data validation
+- **[PyJWT](https://pyjwt.readthedocs.io/)** - JWT implementation
+- **[Bcrypt](https://github.com/pyca/bcrypt/)** - Password hashing
+- **[Pytest](https://pytest.org/)** - Testing framework
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Frontend
+- **[React 18](https://react.dev/)** - UI library
+- **[Vite](https://vitejs.dev/)** - Build tool
+- **[TailwindCSS](https://tailwindcss.com/)** - Utility-first CSS
+- **[Framer Motion](https://www.framer.com/motion/)** - Animation library
+- **[React Router](https://reactrouter.com/)** - Routing
+- **[React Query](https://tanstack.com/query/)** - Data fetching
+- **[Axios](https://axios-http.com/)** - HTTP client
+- **[shadcn/ui](https://ui.shadcn.com/)** - UI components
+- **[Lucide Icons](https://lucide.dev/)** - Icon library
 
-3. Start the development server:
-   ```bash
-   npm start
-   ```
+### DevOps
+- **[Docker](https://www.docker.com/)** - Containerization
+- **[Docker Compose](https://docs.docker.com/compose/)** - Multi-container orchestration
+- **[MailHog](https://github.com/mailhog/MailHog)** - Email testing tool
 
-The frontend will be available at `http://localhost:3000`
+## 📚 Documentation
 
-## API Documentation
+### API Endpoints
 
-Once the backend is running, visit `http://localhost:8000/docs` for interactive API documentation.
+#### Authentication (`/auth`)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/auth/register` | Register new user | ❌ |
+| POST | `/auth/verify-email/{token}` | Verify email address | ❌ |
+| POST | `/auth/login` | User login | ❌ |
+| POST | `/auth/refresh` | Refresh access token | ❌ |
+| POST | `/auth/logout` | User logout | ✅ |
+| POST | `/auth/forgot-password` | Request password reset | ❌ |
+| POST | `/auth/reset-password` | Reset password with token | ❌ |
 
-## Demo Accounts
+#### Notes (`/notes`)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/notes` | Get user's notes | ✅ |
+| POST | `/notes` | Create new note | ✅ |
+| GET | `/notes/{id}` | Get note by ID | ✅ |
+| PUT | `/notes/{id}` | Update note | ✅ |
+| DELETE | `/notes/{id}` | Delete note | ✅ |
+| GET | `/notes/public` | Get all public notes | ❌ |
 
-- **Admin User**:
-  - Email: admin@example.com
-  - Password: admin123
-  - Role: Admin
+#### Admin (`/admin`)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/admin/users` | Get all users | ✅ Admin |
+| PUT | `/admin/users/{id}/role` | Change user role | ✅ Admin |
+| PUT | `/admin/users/{id}/status` | Activate/deactivate user | ✅ Admin |
+| GET | `/admin/audit` | Get audit logs | ✅ Admin |
 
-- **Regular User**:
-  - Email: user@example.com
-  - Password: user123
-  - Role: User
+### Interactive API Documentation
 
-## Testing
+Visit http://localhost:8000/docs for the full interactive Swagger UI documentation.
 
-Run the test suite:
+## 💻 Development
+
+### Local Development Setup
+
+#### Backend Development
+```bash
+# Navigate to backend directory
+cd backend
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run migrations
+alembic upgrade head
+
+# Start development server
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+#### Frontend Development
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### Running Tests
+
+#### Backend Tests
+```bash
+# Run all tests
+docker-compose exec backend pytest
+
+# Run with coverage
+docker-compose exec backend pytest --cov=app --cov-report=html
+
+# Run specific test file
+docker-compose exec backend pytest app/tests/test_auth.py
+```
+
+#### Frontend Tests
+```bash
+# Run tests
+docker-compose exec frontend npm test
+
+# Run tests in watch mode
+docker-compose exec frontend npm test -- --watch
+```
+
+### Database Migrations
 
 ```bash
-cd backend
-python -m pytest tests/ -v
+# Create a new migration
+docker-compose exec backend alembic revision --autogenerate -m "Description"
+
+# Apply migrations
+docker-compose exec backend alembic upgrade head
+
+# Rollback migration
+docker-compose exec backend alembic downgrade -1
 ```
 
-## Deployment
-
-### Using Docker Compose
-
-1. Ensure Docker and Docker Compose are installed
-2. Run the application:
-   ```bash
-   docker-compose up --build
-   ```
-
-This will start both backend and frontend services.
-
-## Security Features
-
-- Passwords are hashed using bcrypt
-- JWT tokens for authentication
-- Email confirmation required for account activation
-- Role-based access control
-- Audit logging for security monitoring
-- CORS protection
-- Input validation and sanitization
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-├── backend/
-│   ├── app/
-│   │   ├── main.py          # FastAPI application
-│   │   ├── database.py      # Database configuration
-│   │   ├── models.py        # SQLAlchemy models
-│   │   ├── config.py        # Configuration settings
-│   │   └── routers/         # API endpoints
-│   │       ├── auth.py      # Authentication endpoints
-│   │       ├── notes.py     # Notes CRUD endpoints
-│   │       └── admin.py     # Admin panel endpoints
-│   └── tests/               # Test files
-├── frontend/
-│   ├── src/
-│   │   ├── App.js           # Main React component
-│   │   └── index.js         # Application entry point
-│   └── public/              # Static assets
-└── docker-compose.yml       # Docker configuration
+Notes-SaaS-Application/
+├── 📂 backend/                 # FastAPI Backend
+│   ├── 📂 app/
+│   │   ├── 📂 api/            # API Routes
+│   │   │   ├── __init__.py
+│   │   │   ├── auth.py        # Authentication endpoints
+│   │   │   ├── notes.py       # Notes CRUD endpoints
+│   │   │   ├── admin.py       # Admin endpoints
+│   │   │   └── deps.py        # Dependencies
+│   │   ├── 📂 core/           # Core Configuration
+│   │   │   ├── config.py      # Settings
+│   │   │   └── security.py    # JWT & Security
+│   │   ├── 📂 db/             # Database
+│   │   │   ├── session.py     # DB Session
+│   │   │   ├── init_db.py     # DB Initialization
+│   │   │   └── 📂 migrations/ # Alembic Migrations
+│   │   ├── 📂 models/         # SQLAlchemy Models
+│   │   │   ├── user.py
+│   │   │   ├── note.py
+│   │   │   └── audit_log.py
+│   │   ├── 📂 schemas/        # Pydantic Schemas
+│   │   │   ├── auth.py
+│   │   │   ├── user.py
+│   │   │   ├── note.py
+│   │   │   └── audit_log.py
+│   │   ├── 📂 services/       # Business Logic
+│   │   │   ├── auth.py
+│   │   │   ├── email.py
+│   │   │   └── audit.py
+│   │   ├── 📂 tests/          # Tests
+│   │   │   ├── conftest.py
+│   │   │   ├── test_auth.py
+│   │   │   └── test_notes.py
+│   │   └── main.py            # FastAPI App
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── alembic.ini
+│
+├── 📂 frontend/                # React Frontend
+│   ├── 📂 src/
+│   │   ├── 📂 components/     # Reusable Components
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   └── 📂 ui/         # UI Components
+│   │   ├── 📂 pages/          # Page Components
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── NotesList.jsx
+│   │   │   ├── NoteEditor.jsx
+│   │   │   ├── AdminPanel.jsx
+│   │   │   └── AuditLog.jsx
+│   │   ├── 📂 hooks/          # Custom Hooks
+│   │   │   └── useAuth.jsx
+│   │   ├── 📂 contexts/       # React Contexts
+│   │   │   └── ThemeContext.jsx
+│   │   ├── 📂 lib/            # Utilities
+│   │   │   └── utils.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── vite.config.js
+│   └── tailwind.config.js
+│
+├── 📂 screenshots/             # Application Screenshots
+├── docker-compose.yml          # Docker Compose Configuration
+├── .env.example                # Environment Variables Template
+├── .gitignore                  # Git Ignore Rules
+├── LICENSE                     # MIT License
+├── CONTRIBUTING.md             # Contribution Guidelines
+└── README.md                   # This File
 ```
 
-## Contributing
+## 🔒 Security Features
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new features
-5. Ensure all tests pass
-6. Submit a pull request
+- ✅ **Password Hashing** - Bcrypt with salt
+- ✅ **JWT Authentication** - Access & Refresh tokens
+- ✅ **Token Rotation** - Automatic refresh token rotation
+- ✅ **RBAC** - Role-based access control
+- ✅ **Input Validation** - Pydantic schemas
+- ✅ **CORS Protection** - Configured origins
+- ✅ **SQL Injection Prevention** - SQLAlchemy ORM
+- ✅ **XSS Protection** - React's built-in protection
+- ✅ **Audit Logging** - Track all sensitive operations
+- ✅ **Email Verification** - Confirm user emails
+- ✅ **Rate Limiting** - Redis-based (ready for production)
 
-## License
+## 🤝 Contributing
 
-This project is licensed under the MIT License.
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Quick Contribution Steps
+
+1. 🍴 Fork the repository
+2. 🌿 Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. 💻 Make your changes
+4. ✅ Run tests
+5. 📝 Commit your changes (`git commit -m 'Add amazing feature'`)
+6. 🚀 Push to the branch (`git push origin feature/amazing-feature`)
+7. 🎉 Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [FastAPI](https://fastapi.tiangolo.com/) for the amazing Python framework
+- [React](https://react.dev/) for the powerful UI library
+- [TailwindCSS](https://tailwindcss.com/) for the utility-first CSS framework
+- [shadcn/ui](https://ui.shadcn.com/) for beautiful UI components
+- [Framer Motion](https://www.framer.com/motion/) for smooth animations
+
+## 📧 Contact
+
+For questions or support, please open an issue on GitHub.
+
+---
+
+<div align="center">
+  Made with ❤️ by the Notes SaaS Team
+  
+  ⭐ Star us on GitHub — it motivates us a lot!
+</div>
