@@ -65,12 +65,10 @@
 ### Screenshots
 
 <div align="center">
-  <img src="./screenshots/login.png" alt="Login Page" width="45%">
-  <img src="./screenshots/register.png" alt="Register Page" width="45%">
-  <img src="./screenshots/notes-list.png" alt="Notes List" width="45%">
-  <img src="./screenshots/note-editor.png" alt="Note Editor" width="45%">
-  <img src="./screenshots/admin-panel.png" alt="Admin Panel" width="45%">
-  <img src="./screenshots/audit-log.png" alt="Audit Log" width="45%">
+  <img src="./screenshots/login page.jpg" alt="Login Page" width="45%">
+  <img src="./screenshots/register page.jpg" alt="Register Page" width="45%">
+  <img src="./screenshots/mainpage.jpg" alt="Notes List" width="45%">
+  <img src="./screenshots/admin panel.jpg" alt="Admin Panel" width="45%">
 </div>
 
 ### Demo Accounts
